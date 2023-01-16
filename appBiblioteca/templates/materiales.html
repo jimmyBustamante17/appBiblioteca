@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block tittle %} Materiales {% endblock %}
+
+{% block content %}
+
+<script>
+
+    function actualizarCantidad(){
+        let cantidadActual = document.getElementById("id_cantidadRegistrada").value;
+        document.getElementById("id_cantidadActual").value = cantidadActual;
+    }
+
+</script>
+
+<center>
+    <h1>MATERIALES</h1>
+    <h4>Registra todos tus materiales en la biblioteca</h4>
+
+    <form method="post">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button class="btn-registrar" type="submit">Registrar Material </button>
+    </form>
+    <br>
+    <table class="content-table">
+        <thead> 
+            <tr> 
+                <th>ID</th> 
+                <th>Titulo</th> 
+                <th>Fecha Registro</th> 
+                <th>Cantidad registrada</th> 
+                <th>Cantidad Actual</th> 
+                <th></th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            {% for material in materiales %}
+            <tr> 
+                <th>{{material.identificador}}</th> 
+                <th>{{material.titulo}}</th> 
+                <th>{{material.fechaRegistro}}</th> 
+                <th>{{material.cantidadRegistrada}}</th> 
+                <th>{{material.cantidadActual}}</th>
+                <th><a class="btn btn-block" href="/app/incrementarMaterial/{{material.identificador}}"> Aumentar </a></th>
+            </tr> 
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</center>
+
+{% endblock %}

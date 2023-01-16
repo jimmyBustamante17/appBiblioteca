@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block tittle %} Materiales {% endblock %}
+
+{% block content %}
+
+<center>
+    
+    <h1>BIEVENIDO, AQUÍ PUEDES PRESTAR MATERIALES</h1>
+
+    <table class="content-table">
+        <thead> 
+            <tr> 
+                <th>ID</th> 
+                <th>Titulo</th> 
+                <th>Fecha Registro</th> 
+                <th>Cantidad registrada</th> 
+                <th>Cantidad Actual</th> 
+                <th></th>
+                
+            </tr> 
+        </thead> 
+        <tbody> 
+            {% for material in materiales %}
+            {% if material.cantidadActual > 0 %}
+            <tr> 
+                <th>{{material.identificador}}</th> 
+                <th>{{material.titulo}}</th> 
+                <th>{{material.fechaRegistro}}</th> 
+                <th>{{material.cantidadRegistrada}}</th> 
+                <th>{{material.cantidadActual}}</th>
+                <th><a class="btn btn-block" href="/app/prestar/{{cedula}}/{{material.identificador}}"> Adquirir </a></th>
+            </tr> 
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</center>
+
+{% endblock %}

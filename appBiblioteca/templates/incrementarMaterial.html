@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block tittle %} Materiales {% endblock %}
+
+{% block content %}
+
+<center>
+    <h1>INCREMENTAR</h1>
+    <form method="post">
+        {% csrf_token %} 
+        <label >Aumentar Cantidas</label>
+        <input type="number" name="cantidad">
+        <button class="btn-registrar" type="submit">Aumentar </button>
+    </form>
+</center>
+
+{% endblock %}

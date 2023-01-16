@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block tittle %} USUARIOS {% endblock %} 
+
+{% block content %}
+
+<center>
+<h1>USUARIOS</h1>
+<h4>Información de nuestros usuarios</h4>
+
+<div>
+    <form method="post">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button class="btn-registrar" type="submit">Registrar Usuario </button>
+    </form>
+
+    
+</div>
+<br />
+<div>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in usuarios %}
+            <tr>
+                <th>{{i.cedula}}</th>
+                <th>{{i.nombre}}</th>
+                <th>{{i.idRol}}</th>
+                <th><a class="btn btn-success" href="/app/prestarMaterial/{{i.cedula}}"> Prestar </a></th>
+                <th><a class="btn btn-danger" href="/app/eliminarUsuario/{{i.cedula}}"> Eliminar </a></th>
+                <th><a class="btn btn-dark" href="/app/materialesPrestados/{{i.cedula}}"> Devolver </a></th>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+</center>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block tittle %} HISTORIAL {% endblock %}
+
+{% block content %}
+
+<center>
+    <h1>HISTORIAL</h1>
+    <h4>Información de los movimientos realizados en la biblioteca</h4>
+  
+    <table class="content-table">
+        <thead> 
+            <tr> 
+                <th>ID</th> 
+                <th>ID material</th>             
+                <th>Cedula</th> 
+                <th>Estado</th> 
+                <th>Fecha</th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            {% for historial in historiales %}
+            <tr> 
+                <th>{{historial.id}}</th>
+                <th>{{historial.idMaterial}}</th> 
+                <th>{{historial.cedula}}</th> 
+                <th>{{historial.estado}}</th>
+                <th>{{historial.fecha}}</th> 
+            </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+</center>
+
+{% endblock %}
